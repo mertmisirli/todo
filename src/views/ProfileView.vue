@@ -46,14 +46,14 @@
                         <!--  -->
                         <div class="col-12 col-lg-5 mx-auto">
                             <label for="uid" class="form-label">Kullanıcı id</label>
-                            <input type="text" class="form-control" id="uid" placeholder="" :value="`${userName.uid}`"
+                            <input type="text" class="form-control text-muted" readonly id="uid" placeholder="" :value="`${userName.uid}`"
                                 required="">
                         </div>
 
 
                         <div class="col-12 col-lg-5 mx-auto mt-4">
                             <label for="email" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="email" placeholder="you@example.com"
+                            <input type="email" class="form-control text-muted" id="email" readonly placeholder="you@example.com"
                                 :value="`${userName.email}`">
                             <div class="invalid-feedback">
                                 Lütfen Geçerli bir Email Girin </div>
@@ -81,9 +81,9 @@
                     <div class="col-12 col-lg-5 mx-auto mt-4">
                         <input type="submit" value="Güncelle" class="text-white me-4 bg-primary rounded-2 p-2"
                             style="background-image: linear-gradient( rgba(207, 62, 62, 0), rgb(64, 163, 180));">
-                        <!-- <a href="javascript:void(0);" @click="resetData"
+                        <a href="javascript:void(0);" @click="resetData"
                             class="btn btn-cancel text-white rounded-2 px-4 py-2"
-                            style="background-color: rgba(231, 151, 70, 0.836);">İptal</a> -->
+                            style="background-color: rgba(231, 151, 70, 0.836);">İptal</a>
                     </div>
                 </form>
             </div>
