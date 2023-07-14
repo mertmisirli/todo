@@ -13,80 +13,98 @@
                     <div class="profile-top">
                         <div class="profile-content">
                             <div class="profile-contentimg">
-                                <img :src="`${userName.photoURL}`" alt="img" id="blah" width="100" height="100">
+                                <a :href="userName.profileLink">
+                                    <div class="image-container">
+                                        <img :src="`${userName.photoURL}`" alt="img" id="blah" width="100" height="100">
+                                        <div class="icon-container">
+                                            <a href="javascript:void(0);" class="img-edit-icon" @click="handleFileUpload">
+                                                <i class="pi pi-user-edit"></i>
+                                                <div class="profileupload">
+                                                    <input type="file" id="imgInp" ref="fileInput" style="display: none"
+                                                        @change="handleFileChange">
+                                                </div>
+                                            </a>
+                                        </div>
 
-                                <div class="profileupload">
-                                    <input type="file" id="imgInp">
-                                    <a href="javascript:void(0);"><i class="pi pi-user-edit"></i></a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="profile-contentname">
-                                <h2>{{ userName.displayName }} </h2>
+                                <h2>{{ userName.displayName }}</h2>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row rounded-2  p-2">
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Ad</label>
-                            <input class="col-9 rounded-2 p-2" type="text" placeholder="William"
-                                :value="`${userName.displayName}`">
+                <form @submit="updateUserData">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 mx-auto">
+                            <label for="uname" class="form-label">Kullanıcı Adı</label>
+                            <input type="text" class="form-control" id="uname" :value="`${userName.displayName}`"
+                                required="">
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Kullanıcı Id</label>
-                            <input class="col-9 rounded-2 p-2" type="text" placeholder="Castilo" :value="`${userName.uid}`">
+                        <!--  -->
+                        <div class="col-12 col-lg-5 mx-auto">
+                            <label for="uid" class="form-label">Kullanıcı id</label>
+                            <input type="text" class="form-control" id="uid" placeholder="" :value="`${userName.uid}`"
+                                required="">
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Email</label>
-                            <input class="col-9 rounded-2 p-2" type="text" placeholder="william@example.com"
+
+
+                        <div class="col-12 col-lg-5 mx-auto mt-4">
+                            <label for="email" class="form-label">Email </label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com"
                                 :value="`${userName.email}`">
+                            <div class="invalid-feedback">
+                                Lütfen Geçerli bir Email Girin </div>
+                        </div>
+
+                        <div class="col-12 col-lg-5 mx-auto mt-4">
+                            <label for="phoneNumber" class="form-label">Telefon</label>
+                            <input type="text" class="form-control" id="phoneNumber" :value="`${userName.phoneNumber}`"
+                                required="">
+                            <div class="invalid-feedback">
+                                Lütfen Geçerli bir Numara Girin
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-5 mx-auto mt-4">
+                            <label for="password" class="form-label">Şifre</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+
+                        <div class="col-12 col-lg-5 mx-auto mt-4">
+                            <label for="password-again" class="form-label">Şifre<span class="text-muted">(Tekrar)</span></label>
+                            <input type="password" class="form-control" id="password-again">
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Telefon</label>
-                            <input class="col-9 rounded-2 p-2" type="text" placeholder="+1452 876 5432"
-                                :value="`${userName.phoneNumber}`">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Kullanıcı Adı</label>
-                            <input class="col-9 rounded-2 p-2" type="text" placeholder="+1452 876 5432"
-                                :value="`${userName.tokensValidAfterTimestamp}`">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <div class="form-group">
-                            <label class="col-3">Şifre</label>
-                            <input type="password" class=" pass-input col-9 rounded-2 p-2">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-5">
-                        <a href="javascript:void(0);" @click="updateUser"
-                            class="btn btn-submit text-white me-4 bg-primary rounded-2 p-2"
-                            style="background-image: linear-gradient( rgba(207, 62, 62, 0), rgb(64, 163, 180));">Güncelle</a>
-                        <a href="javascript:void(0);" @click="resetData"
+                    <div class="col-12 col-lg-5 mx-auto mt-4">
+                        <input type="submit" value="Güncelle" class="text-white me-4 bg-primary rounded-2 p-2"
+                            style="background-image: linear-gradient( rgba(207, 62, 62, 0), rgb(64, 163, 180));">
+                        <!-- <a href="javascript:void(0);" @click="resetData"
                             class="btn btn-cancel text-white rounded-2 px-4 py-2"
-                            style="background-color: rgba(231, 151, 70, 0.836);">İptal</a>
+                            style="background-color: rgba(231, 151, 70, 0.836);">İptal</a> -->
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script>
 
 import Navbar from '../components/NavBar.vue'
 import Footer from '../components/Footer.vue'
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import firebaseConfig from '@/firebase/firebaseInit';
+
 import { getAuth } from 'firebase/auth';
+
+const db = getFirestore();
+const storage = getStorage();
 
 export default {
     components: {
@@ -105,6 +123,76 @@ export default {
         },
         resetData() {
 
+        },
+        handleFileUpload() {
+            this.$refs.fileInput.click(); // Dosya seçimi için input etiketini tetikle
+        },
+        handleFileChange(event) {
+            const file = event.target.files[0]; // Seçilen dosya
+            const downloadLink = this.saveImageToFirestore(file);
+
+        },
+        async saveImageToFirestore(file) {
+            try {
+                // Görsel dosyanın depolanacağı referansı oluşturun
+                const storageRef = ref(storage, `images/${file.name}`);
+
+                // Dosyayı yükleyin ve depolayın
+                await uploadBytes(storageRef, file);
+
+                // Dosyanın indirme URL'sini alın
+                const downloadURL = await getDownloadURL(storageRef);
+
+                // Firestore'da yeni bir belge oluşturun ve görsel URL'sini kaydedin
+                const imageRef = await addDoc(collection(db, "images"), {
+                    imageURL: downloadURL,
+                    fileName: file.name
+                });
+
+                console.log("Görsel Firestore'a kaydedildi. Belge ID:", imageRef.id);
+                return downloadURL;
+            } catch (error) {
+                console.error("Görseli Firestore'a kaydetme hatası:", error);
+                return null;
+            }
+        },
+
+         updateUserData(event) {
+            event.preventDefault();
+            const user = getAuth().currentUser;
+
+            const form = event.target;
+
+            // Inputların değerleri
+            const firstName = form.elements.uname.value;
+            const lastName = form.elements.uid.value;
+            const email = form.elements.email.value;
+            const phoneNumber = form.elements.phoneNumber.value;
+            const password = form.elements.password.value;
+
+            // Örnek: Konsola değerleri yazdıralım
+            console.log('Ad:', firstName);
+            console.log('Soyad:', lastName);
+            console.log('Email:', email);
+            console.log('Telefon:', phoneNumber);
+            console.log('Şifre:', password);
+
+
+            // user.updateUser(uid, {
+            //     email: user.email, //
+            //     phoneNumber: "+11234567890",
+            //     emailVerified: true,
+            //     password: "newPassword",
+            //     displayName: "Jane Doe",
+            //     disabled: true
+            // })
+            //     .then(function (userRecord) {
+            //         // See the UserRecord reference doc for the contents of `userRecord`.
+            //         console.log("Successfully updated user", userRecord.toJSON());
+            //     })
+            //     .catch(function (error) {
+            //         console.log("Error updating user:", error);
+            //     });
         }
     },
     mounted() {
@@ -185,5 +273,9 @@ export default {
     position: absolute;
     bottom: 10px;
     left: 41px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: red;
 }
 </style>

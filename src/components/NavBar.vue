@@ -4,23 +4,23 @@
     <div class="card relative z-2">
         <!--  -->
         <!--  -->
-        <Menubar :model="items">
+        <Menubar :model="items" style="background-color: rgb(255, 255, 255);">
             <template #start>
                 <img alt="logo" src="../assets/yk_logo.png" height="40" class="mr-2" />
             </template>
-            <template #end>
-                <div class="header-element "> <!-- Start::header-link|dropdown-toggle -->
+            <template #end >
+                <div class="header-element"> <!-- Start::header-link|dropdown-toggle -->
                     <a href="#" class="header-link dropdown-toggle text-decoration-none" id="mainHeaderProfile" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" aria-expanded="false">
                         <div class="d-flex align-items-center">
-                            <div class="me-sm-2 me-0">
+                            <div class="me-sm-2 me-0 mt-auto">
                                 <img class="ProfilePhoto fluid rounded-2" :src="`${userInfo.photoURL}`" alt="Person"
-                                    width="40" height="40">
+                                    width="45" height="45">
                             </div>
                             <div class="d-sm-block d-none">
                                 <!-- <p class="fw-semibold mb-0 lh-1">Json Taylor</p> -->
-                                <p class="fw-semibold mb-0 lh-1" style="height: 15px;">{{ userInfo.displayName }}</p>
-                                <span class="op-7 fw-normal d-block fs-11">Hoşgeldiniz</span>
+                                <p class="fw-semibold mb-0 lh-1 mt-1 mb-1" style="height: 15px;">{{ userInfo.displayName }}</p>
+                                <span class="" style="height: 15px;">Hoşgeldiniz</span>
                             </div>
                         </div>
                     </a> <!-- End::header-link|dropdown-toggle -->
